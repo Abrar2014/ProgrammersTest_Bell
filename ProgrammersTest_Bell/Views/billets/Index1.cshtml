@@ -1,0 +1,64 @@
+﻿@model IEnumerable<ProgrammersTest_Bell.Models.billet>
+
+@{
+    /**/
+    Layout = "~/Views/Shared/View.cshtml";
+
+    ViewBag.Title = "Search";
+}
+
+<h2>Search</h2>
+@using (Html.BeginForm("Index1", "billets", FormMethod.Get))
+{
+
+    <div>
+        @Html.TextBox("nomProjet", null, new { @class = "form-control", @placeholder = "Search by project name" })
+        @Html.TextBox("nomDptm", null, new { @class = "form-control", @placeholder = "Search by department name" })
+        @Html.TextBox("nomEmp", null, new { @class = "form-control", @placeholder = "Search by employee name" })
+        @Html.TextBox("descrBillet", null, new { @class = "form-control", @placeholder = "Search for a word in the description" })
+        <input class="form-control btn-primary" type="submit" id="myBtn" value="Search" style="margin-left:0%; " />
+
+
+    </div>
+}
+
+
+<table class="table">
+    <tr>
+        <th>
+            Project name
+        </th>
+
+        <th>
+            Departement
+        </th>
+        <th>
+            Employee name
+        </th>
+        <th>
+           Description
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nomProjet)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.departement.nomDepartement)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.employe.nom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+
+    </tr>
+    }
+
+</table>
